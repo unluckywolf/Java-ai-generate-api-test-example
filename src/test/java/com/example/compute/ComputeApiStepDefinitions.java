@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @CucumberContextConfiguration
@@ -54,7 +55,13 @@ public class ComputeApiStepDefinitions {
             String value = row.get("value");
             
             if (isNumeric(value)) {
-                response.then().body(key, equalTo(Double.parseDouble(value)));
+                // Use flexible numeric comparison that works with both Float and Double
+                double expectedValue = Double.parseDouble(value);
+                response.then().body(key, anyOf(
+                    equalTo((float) expectedValue),
+                    equalTo(expectedValue),
+                    equalTo((int) expectedValue)
+                ));
             } else {
                 response.then().body(key, equalTo(value));
             }

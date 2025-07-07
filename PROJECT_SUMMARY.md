@@ -73,11 +73,15 @@ Java-ai-generate-api-test-example/
             └── application-test.properties  # Test config
 ```
 
-## 🧪 Test Results Summary
+## 🧪 Actual Test Results Summary (已實際執行)
 - **Total Scenarios**: 8 (5 app + 3 API)
 - **Passed**: 8/8 (100%)
 - **Failed**: 0/8 (0%)
+- **App Tests**: 5/5 passed (1.584s)
+- **API Tests**: 3/3 passed (0.796s)
 - **Coverage**: Complete functional coverage for addition operations
+- **執行環境**: Java 11.0.27, Maven 3.8.7, Spring Boot 2.7.17
+- **實際執行時間**: 2025-07-07 16:29
 
 ## 🚀 How to Run
 
