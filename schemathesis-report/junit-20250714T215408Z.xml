@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites disabled="0" errors="0" failures="0" tests="1" time="0.06115505000002486">
+	<testsuite disabled="0" errors="0" failures="0" name="schemathesis" skipped="0" tests="1" time="0.06115505000002486" hostname="DESKTOP-8435HD1">
+		<testcase name="GET /api/add" time="0.061155"/>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Compute API
+  description: A simple calculator API that provides addition functionality
+  version: 1.0.0
+  contact:
+    name: Compute API Team
+    email: support@example.com
+servers:
+  - url: http://localhost:8080
+    description: Development server
+paths:
+  /api/add:
+    get:
+      summary: Add two numbers
+      description: Performs addition operation on two numbers provided as query parameters
+      operationId: addNumbers
+      parameters:
+        - name: a
+          in: query
+          required: true
+          description: First number to add
+          schema:
+            type: string
+            example: "10"
+        - name: b
+          in: query
+          required: true
+          description: Second number to add
+          schema:
+            type: string
+            example: "20"
+      responses:
+        '200':
+          description: Successful addition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+              example:
+                result: 30.0
+        '400':
+          description: Bad request - missing parameters or invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_parameter:
+                  summary: Missing parameter
+                  value:
+                    error: "Missing parameter: b"
+                invalid_input:
+                  summary: Invalid input type
+                  value:
+                    error: "Invalid input type"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Internal server error"
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        result:
+          type: number
+          format: double
+          description: The result of the addition operation
+      required:
+        - result
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong
+      required:
+        - error
